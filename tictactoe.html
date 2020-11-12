@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>
+            TIC TAC TOE
+        </h1>
+        <div class="status-bar">
+            <div class="player-turn" data-turn="2">
+                TURN: PLAYER
+            </div>
+            <div class="scoreP1" data-score-player1="0">PLAYER 1 GAMES WON: </div> 
+            <div class="scoreP2" data-score-player2="0">PLAYER 2 GAMES WON: </div> 
+            <div class="announcement-message">Ready?! FIGHT!!!</div>
+        </div>
+        
+    </header>
+    <div class="all-boxes flexbox-container">
+        <div class="left column">
+            <div class="box1 boxes"></div>
+            <div class="box4 boxes"></div>
+            <div class="box7 boxes"></div>
+        </div>
+        <div class="middle column">
+            <div class="box2 boxes"></div>
+            <div class="box5 boxes"></div>
+            <div class="box8 boxes"></div>
+        </div>
+        <div class="right column">
+            <div class="box3 boxes"></div>
+            <div class="box6 boxes"></div>
+            <div class="box9 boxes"></div>
+        </div>
+    </div>
+    <footer>
+        <button class="next-game">NEXT GAME</button>
+        <button class="reset-game">RESET GAME</button>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
