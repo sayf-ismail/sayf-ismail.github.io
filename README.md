@@ -5,7 +5,7 @@ ________________________________________________________
 
 ### 1. TIC TAC TOE
 
-Tic Tac Toe project was made with HTML, CSS and Javascript. 
+Tic Tac Toe project was made with HTML, CSS and Javascript. The initial plan was made here: https://drive.google.com/file/d/11iRWomAb9kvuB-7XxXtaxnl8bT-gIPcB/view?usp=sharing 
 
 There are two versions: 
 - V1 ( https://sayf-ismail.github.io/tictactoe.html)
