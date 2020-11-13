@@ -12,4 +12,11 @@ Challenges faced included:
 - Understanding the removeChild line and where it can be used
 - Removing player ability to click on populated boxes
 
+Ways I solved for these problems were:
+
+- Making use of breakout room time 
+- Googling
+- W3Schools
+- Good old trial and error!
+
 Overall this was a great way to practice skills in Javascript, and the Document Object Model in particular.
