@@ -1,9 +1,9 @@
-PROJECTS
+## PROJECTS
 
 ________________________________________________________
 
 
-1. TIC TAC TOE
+### 1. TIC TAC TOE
 
 Tic Tac Toe project was made with HTML, CSS and Javascript. 
 
