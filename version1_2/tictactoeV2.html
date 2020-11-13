@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+@font-face {
+    font-family: ChessType;
+    src: url("./chesstype/ChessType.ttf")
+}
+
+header {
+    text-align: center;
+    font-family: ChessType;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.flexbox-container {
+    display: flex;
+    background-color: gold;
+    max-width: 512px;
+    margin: auto;
+    justify-content: space-around;
+}
+
+@media only screen and  (max-width: 665px) {
+	/* write css you want to find when screen reaches a smaller size than 665px */
+	.status-bar {
+        flex-direction: column;
+        margin-bottom: 30px;
+	}
+	header h1 {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+    }
+    .boxes {
+        min-height: 120px;
+        min-width: 120px;
+        background-color: white;
+        color: purple;
+        border: 3px solid black;
+        flex-grow: 2;
+        font-size: 70px;
+        text-align: center;
+    }
+}
+
+.column {
+flex-grow: 1;
+}
+
+.boxes {
+    min-height: 120px;
+    min-width: 120px;
+    background-color: white;
+    color: purple;
+    border: 3px solid black;
+    flex-grow: 2;
+    font-size: 70px;
+    text-align: center;
+}
+
+.boxes h3 {
+    margin: auto;
+}
+
+footer {
+    margin-top: 30px;
+    margin-bottom: 150px;
+    text-align: center;
+}
+
+.scoreP1::after {
+    content: attr(data-score-player1);
+}
+.scoreP2::after {
+    content: attr(data-score-player2);
+}
+
+.player-turn::after {
+    content: attr(data-turn);
+}
+
+.status-bar {
+    display: flex;
+    background-color: gold;
+    justify-content: space-evenly;
+    /* flex-grow: 1; */
+}
+
+.player-turn {
+    border: 1px solid black;
+    background-color: black;
+    padding: 3px;
+}
+
+.status-bar .scoreP1 {
+    border: 1px solid black;
+    background-color: black;
+    padding: 3px;
+}
+
+.status-bar .scoreP2 {
+    border: 1px solid black;
+    background-color: black;
+    padding: 3px;
+}
+
+.announcement-message {
+    background-color: black;
+    color: yellow;
+    min-width: 300px;
+    border: 3px solid yellow;
+}
+
+
+
+.animation-target {
+    -webkit-animation: animation 1000ms linear both;
+    animation: animation 1000ms linear both;
+  }
+  
+  /* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bs%3A%5B%7BT%3A%22c%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A1%2Cy%3A1%7D%2Ct%3A%7Bx%3A2%2Cy%3A1%7D%2Cs%3A1%2Cb%3A4%7D%2C%7BT%3A%22c%22%2Ce%3A%22b%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A1%2Cy%3A1%7D%2Ct%3A%7Bx%3A1%2Cy%3A2%7D%2Cs%3A1%2Cb%3A6%7D%5D%7D */
+  
+  @-webkit-keyframes animation { 
+    0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    3.4% { -webkit-transform: matrix3d(1.316, 0, 0, 0, 0, 1.407, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.316, 0, 0, 0, 0, 1.407, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.7% { -webkit-transform: matrix3d(1.45, 0, 0, 0, 0, 1.599, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.45, 0, 0, 0, 0, 1.599, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    6.81% { -webkit-transform: matrix3d(1.659, 0, 0, 0, 0, 1.893, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.659, 0, 0, 0, 0, 1.893, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    9.41% { -webkit-transform: matrix3d(1.883, 0, 0, 0, 0, 2.168, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.883, 0, 0, 0, 0, 2.168, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    10.21% { -webkit-transform: matrix3d(1.942, 0, 0, 0, 0, 2.226, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.942, 0, 0, 0, 0, 2.226, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    13.61% { -webkit-transform: matrix3d(2.123, 0, 0, 0, 0, 2.332, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.123, 0, 0, 0, 0, 2.332, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    14.11% { -webkit-transform: matrix3d(2.141, 0, 0, 0, 0, 2.331, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.141, 0, 0, 0, 0, 2.331, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    17.52% { -webkit-transform: matrix3d(2.208, 0, 0, 0, 0, 2.239, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.208, 0, 0, 0, 0, 2.239, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    18.72% { -webkit-transform: matrix3d(2.212, 0, 0, 0, 0, 2.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.212, 0, 0, 0, 0, 2.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    21.32% { -webkit-transform: matrix3d(2.196, 0, 0, 0, 0, 2.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.196, 0, 0, 0, 0, 2.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    24.32% { -webkit-transform: matrix3d(2.151, 0, 0, 0, 0, 1.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.151, 0, 0, 0, 0, 1.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    25.23% { -webkit-transform: matrix3d(2.134, 0, 0, 0, 0, 1.938, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.134, 0, 0, 0, 0, 1.938, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    29.03% { -webkit-transform: matrix3d(2.063, 0, 0, 0, 0, 1.897, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.063, 0, 0, 0, 0, 1.897, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    29.93% { -webkit-transform: matrix3d(2.048, 0, 0, 0, 0, 1.899, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.048, 0, 0, 0, 0, 1.899, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    35.54% { -webkit-transform: matrix3d(1.979, 0, 0, 0, 0, 1.962, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.979, 0, 0, 0, 0, 1.962, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    36.74% { -webkit-transform: matrix3d(1.972, 0, 0, 0, 0, 1.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.972, 0, 0, 0, 0, 1.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    41.04% { -webkit-transform: matrix3d(1.961, 0, 0, 0, 0, 2.022, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.961, 0, 0, 0, 0, 2.022, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    44.44% { -webkit-transform: matrix3d(1.966, 0, 0, 0, 0, 2.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.966, 0, 0, 0, 0, 2.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    52.15% { -webkit-transform: matrix3d(1.991, 0, 0, 0, 0, 2.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.991, 0, 0, 0, 0, 2.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    59.86% { -webkit-transform: matrix3d(2.006, 0, 0, 0, 0, 1.99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.006, 0, 0, 0, 0, 1.99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    63.26% { -webkit-transform: matrix3d(2.007, 0, 0, 0, 0, 1.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.007, 0, 0, 0, 0, 1.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    75.28% { -webkit-transform: matrix3d(2.001, 0, 0, 0, 0, 2.003, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.001, 0, 0, 0, 0, 2.003, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    85.49% { -webkit-transform: matrix3d(1.999, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.999, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    90.69% { -webkit-transform: matrix3d(1.999, 0, 0, 0, 0, 1.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.999, 0, 0, 0, 0, 1.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { -webkit-transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+  }
+  
+  @keyframes animation { 
+    0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    3.4% { -webkit-transform: matrix3d(1.316, 0, 0, 0, 0, 1.407, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.316, 0, 0, 0, 0, 1.407, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.7% { -webkit-transform: matrix3d(1.45, 0, 0, 0, 0, 1.599, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.45, 0, 0, 0, 0, 1.599, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    6.81% { -webkit-transform: matrix3d(1.659, 0, 0, 0, 0, 1.893, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.659, 0, 0, 0, 0, 1.893, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    9.41% { -webkit-transform: matrix3d(1.883, 0, 0, 0, 0, 2.168, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.883, 0, 0, 0, 0, 2.168, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    10.21% { -webkit-transform: matrix3d(1.942, 0, 0, 0, 0, 2.226, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.942, 0, 0, 0, 0, 2.226, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    13.61% { -webkit-transform: matrix3d(2.123, 0, 0, 0, 0, 2.332, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.123, 0, 0, 0, 0, 2.332, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    14.11% { -webkit-transform: matrix3d(2.141, 0, 0, 0, 0, 2.331, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.141, 0, 0, 0, 0, 2.331, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    17.52% { -webkit-transform: matrix3d(2.208, 0, 0, 0, 0, 2.239, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.208, 0, 0, 0, 0, 2.239, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    18.72% { -webkit-transform: matrix3d(2.212, 0, 0, 0, 0, 2.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.212, 0, 0, 0, 0, 2.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    21.32% { -webkit-transform: matrix3d(2.196, 0, 0, 0, 0, 2.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.196, 0, 0, 0, 0, 2.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    24.32% { -webkit-transform: matrix3d(2.151, 0, 0, 0, 0, 1.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.151, 0, 0, 0, 0, 1.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    25.23% { -webkit-transform: matrix3d(2.134, 0, 0, 0, 0, 1.938, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.134, 0, 0, 0, 0, 1.938, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    29.03% { -webkit-transform: matrix3d(2.063, 0, 0, 0, 0, 1.897, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.063, 0, 0, 0, 0, 1.897, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    29.93% { -webkit-transform: matrix3d(2.048, 0, 0, 0, 0, 1.899, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.048, 0, 0, 0, 0, 1.899, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    35.54% { -webkit-transform: matrix3d(1.979, 0, 0, 0, 0, 1.962, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.979, 0, 0, 0, 0, 1.962, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    36.74% { -webkit-transform: matrix3d(1.972, 0, 0, 0, 0, 1.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.972, 0, 0, 0, 0, 1.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    41.04% { -webkit-transform: matrix3d(1.961, 0, 0, 0, 0, 2.022, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.961, 0, 0, 0, 0, 2.022, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    44.44% { -webkit-transform: matrix3d(1.966, 0, 0, 0, 0, 2.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.966, 0, 0, 0, 0, 2.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    52.15% { -webkit-transform: matrix3d(1.991, 0, 0, 0, 0, 2.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.991, 0, 0, 0, 0, 2.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    59.86% { -webkit-transform: matrix3d(2.006, 0, 0, 0, 0, 1.99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.006, 0, 0, 0, 0, 1.99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    63.26% { -webkit-transform: matrix3d(2.007, 0, 0, 0, 0, 1.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.007, 0, 0, 0, 0, 1.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    75.28% { -webkit-transform: matrix3d(2.001, 0, 0, 0, 0, 2.003, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2.001, 0, 0, 0, 0, 2.003, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    85.49% { -webkit-transform: matrix3d(1.999, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.999, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    90.69% { -webkit-transform: matrix3d(1.999, 0, 0, 0, 0, 1.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.999, 0, 0, 0, 0, 1.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { -webkit-transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+  }
+
+ .xwing {
+    background-image: url("./Daco_5513336.png");
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position: center;
+ }
+
+ .dstar {
+    background-image: url("./PinClipart.com_death-star-clip-art_4505155.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+ }
+
+ .blank {
+    background-image: none;
+ }
+  
+  
+</style>
+</head>
+<body>
+    <header>
+        <h1 class="animation-target">
+            TIC TAC TOE
+        </h1>
+        <img src="https://i.pinimg.com/originals/07/da/e7/07dae7c3cc7b260894af8c0e7ed7453a.gif" alt="">
+        <div class="status-bar">
+            <div class="player-turn" data-turn="2">
+                TURN: PLAYER
+            </div>
+            <div class="scoreP1" data-score-player1="0">Player 1 games won: </div> 
+            <div class="scoreP2" data-score-player2="0">Player 2 games won: </div> 
+            <div class="announcement-message">ready?! FIGHT!!!</div>
+        </div>
+        <div class="meme"></div>
+        
+    </header>
+    <div class="all-boxes flexbox-container">
+        <div class="left column">
+            <div class="box1 boxes" id="box1"></div>
+            <div class="box4 boxes" id="box4"></div>
+            <div class="box7 boxes" id="box7"></div>
+        </div>
+        <div class="middle column">
+            <div class="box2 boxes" id="box2"></div>
+            <div class="box5 boxes" id="box5"></div>
+            <div class="box8 boxes" id="box8"></div>
+        </div>
+        <div class="right column">
+            <div class="box3 boxes" id="box3"></div>
+            <div class="box6 boxes" id="box6"></div>
+            <div class="box9 boxes" id="box9"></div>
+        </div>
+    </div>
+    <footer>
+        <button class="next-game">NEXT GAME</button>
+        <button class="reset-game">RESET GAME</button>
+    </footer>
+
+    <script>
+// Players variables initialized: Player 1 = 'X'; Player 2 = 'O'
+var gameplayOn = true
+    var maxTurns = 9
+    var turnCounter = 0
+    var player1score = document.querySelector('.scoreP1')
+    var player2score = document.querySelector('.scoreP2')
+    var playerTurn = document.querySelector('.player-turn')
+
+//Xwing and Dstar 
+    var xwing = document.getElementById("xwing")
+    var dstar = document.getElementById("dstar")
+
+
+// Create variables to select boxes
+    var box1 = document.querySelector('.box1')
+    var box2 = document.querySelector('.box2')
+    var box3 = document.querySelector('.box3')
+    var box4 = document.querySelector('.box4')
+    var box5 = document.querySelector('.box5')
+    var box6 = document.querySelector('.box6')
+    var box7 = document.querySelector('.box7')
+    var box8 = document.querySelector('.box8')
+    var box9 = document.querySelector('.box9')
+
+// Create button-clicks for each box
+
+    box1.addEventListener('click', function() {
+        if (isNotEmpty(box1)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box1)
+            if (rowCheck(box2, box3)) {
+                changeRowGreen(box1, box2, box3)
+                gameStops()
+            } else if (rowCheck(box4, box7)) {
+                changeRowGreen(box1, box4, box7)
+                gameStops()
+            } else if (rowCheck(box5, box9)) {
+                changeRowGreen(box1, box5, box9)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+
+    })
+
+    box2.addEventListener('click', function() {
+        if (isNotEmpty(box2)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box2)
+            if (rowCheck(box1, box3)) {
+                changeRowGreen(box1, box2, box3)
+                gameStops()
+            } else if (rowCheck(box5, box8)) {
+                changeRowGreen(box2, box5, box8)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    box3.addEventListener('click', function() {
+        if (isNotEmpty(box3)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box3)
+            if (rowCheck(box6, box9)) {
+                changeRowGreen(box3, box6, box9)
+                gameStops()
+            } else if (rowCheck(box1, box2)) {
+                changeRowGreen(box1, box2, box3)
+                gameStops()
+            } else if (rowCheck(box5, box7)) {
+                changeRowGreen(box3, box5, box7)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    box4.addEventListener('click', function() {
+        if (isNotEmpty(box4)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box4)
+            if (rowCheck(box1, box7)) {
+                changeRowGreen(box1, box4, box7)
+                gameStops()
+            } else if (rowCheck(box5, box6)) {
+                changeRowGreen(box4, box5, box6)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    box5.addEventListener('click', function() {
+        if (isNotEmpty(box5)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box5)
+            if (rowCheck(box1, box9)) {
+                changeRowGreen(box1, box5, box9)
+                gameStops()
+            } else if (rowCheck(box2, box8)) {
+                changeRowGreen(box2, box5, box8)
+                gameStops()
+            } else if (rowCheck(box3, box7)) {
+                changeRowGreen(box3, box5, box7)
+                gameStops()
+            } else if (rowCheck(box4, box6)) {
+                changeRowGreen(box4, box5, box6)
+                gameStops()
+            } else {
+                isDraw()
+            }
+
+        }
+
+    })
+
+    box6.addEventListener('click', function() {
+        if (isNotEmpty(box6)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn) {
+            turnCounter+=1
+            checkPlayer(turnCounter, box6)
+            if (rowCheck(box3, box9)) {
+                changeRowGreen(box3, box6, box9)
+                gameStops()
+            } else if (rowCheck(box4, box5)) {
+                changeRowGreen(box4, box5, box6)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    box7.addEventListener('click', function() {
+        if (isNotEmpty(box7)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if(gameplayOn){
+            turnCounter+=1
+            checkPlayer(turnCounter, box7)
+            if (rowCheck(box1, box4)) {
+                changeRowGreen(box1, box4, box7)
+                gameStops()
+            } else if (rowCheck(box8, box9)) {
+                changeRowGreen(box7, box8, box9)
+                gameStops()
+            } else if (rowCheck(box3, box5)) {
+                changeRowGreen(box3, box5, box7)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        } 
+
+    })
+
+    box8.addEventListener('click', function() {
+        if (isNotEmpty(box8)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if (gameplayOn){
+            turnCounter+=1
+            checkPlayer(turnCounter, box8)
+            if (rowCheck(box7, box9)) {
+                changeRowGreen(box7, box8, box9)
+                gameStops()
+            } else if (rowCheck(box2, box5)) {
+                changeRowGreen(box2, box5, box8)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    box9.addEventListener('click', function() {
+        if (isNotEmpty(box9)) {
+            console.log("YOU CANNOT DO THAT!")
+        } else if (gameplayOn){
+            turnCounter+=1
+            checkPlayer(turnCounter, box9)
+            if (rowCheck(box3, box6)) {
+                changeRowGreen(box3, box6, box9)
+                gameStops()
+            } else if (rowCheck(box7, box8)) {
+                changeRowGreen(box7, box8, box9)
+                gameStops()
+            } else if (rowCheck(box1, box5)) {
+                changeRowGreen(box1, box5, box9)
+                gameStops()
+            } else {
+                isDraw()
+            }
+        }
+
+    })
+
+    function gameStops() {
+        if (turnCounter % 2 == 0) {
+
+            //SCORE INCREMENT
+            var p1Score = Number(player1score.dataset.scorePlayer1)
+            p1Score += 1
+
+            player1score.dataset.scorePlayer1 = p1Score
+
+            document.querySelector('.announcement-message').textContent = "Congratulations Player 1! \n Click the 'NEXT GAME' button to continue to the next round!"
+
+            var imageWin = document.createElement('IMG')
+            imageWin.setAttribute("src", "https://www.liveabout.com/thmb/SMmczdEEM3wvwj7Yrtw-keYe8W8=/1287x724/smart/filters:no_upscale()/YodaPlanning-5afb316a1d64040036564048.jpg")
+            imageWin.setAttribute("height", "150px")
+
+            var abc = document.querySelector('.meme')
+            abc.appendChild(imageWin)
+
+            gameplayOn = false
+
+        } else {
+
+            //SCORE INCREMENT
+            var p2Score = Number(player2score.dataset.scorePlayer2)
+            p2Score += 1
+
+            player2score.dataset.scorePlayer2 = p2Score
+            
+
+            document.querySelector('.announcement-message').textContent = "Congratulations Player 2! \n Click the 'NEXT GAME' button to continue to the next round!"
+
+            var imageWin = document.createElement('IMG')
+            imageWin.setAttribute("src", "https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/Star-Wars-US-presidential-election-results-meme.jpg")
+            imageWin.setAttribute("height", "150px")
+
+
+            var abc = document.querySelector('.meme')
+            abc.appendChild(imageWin)
+            gameplayOn = false
+        }
+    }
+
+    function rowCheck(boxA, boxB) {
+        if (turnCounter % 2 == 0) {
+            return (boxA.classList.contains("xwing") && boxB.classList.contains("xwing"))
+        } else { 
+            return (boxA.classList.contains("dstar") && boxB.classList.contains("dstar")) 
+        }
+    }
+
+    function changeRowGreen(boxA, boxB, boxC) {
+        boxA.style.backgroundColor = 'green'
+        boxB.style.backgroundColor = 'green'
+        boxC.style.backgroundColor = 'green'
+    }
+
+    function checkPlayer(turnCounter, box) {
+        if (turnCounter % 2 == 0) {
+            addXwing(box)
+            playerTurn.dataset.turn = 2
+            
+        } else {
+            addDstar(box)
+            playerTurn.dataset.turn = 1
+
+        }
+
+    }
+
+// Click button for next game
+    var nextGameButton = document.querySelector('.next-game')
+
+    nextGameButton.addEventListener('click', function() {
+        blankBoxes(box1)
+        blankBoxes(box2)
+        blankBoxes(box3)
+        blankBoxes(box4)
+        blankBoxes(box5)
+        blankBoxes(box6)
+        blankBoxes(box7)
+        blankBoxes(box8)
+        blankBoxes(box9)
+        box1.style.backgroundColor = 'white'
+        box2.style.backgroundColor = 'white'
+        box3.style.backgroundColor = 'white'
+        box4.style.backgroundColor = 'white'
+        box5.style.backgroundColor = 'white'
+        box6.style.backgroundColor = 'white'
+        box7.style.backgroundColor = 'white'
+        box8.style.backgroundColor = 'white'
+        box9.style.backgroundColor = 'white'
+
+        document.querySelector('.announcement-message').textContent = "ready?! FIGHT!!!"
+
+        gameplayOn = true
+
+        var why = document.querySelector('.meme')
+        var first = why.firstChild
+        why.removeChild(first)
+    })
+
+    //Reset game - sets all scores to zero and clears board
+    var resetGameButton = document.querySelector('.reset-game')
+    var p2Score = player2score.dataset.scorePlayer2
+    var p1Score = player1score.dataset.scorePlayer1
+
+    resetGameButton.addEventListener('click', function() {
+        blankBoxes(box1)
+        blankBoxes(box2)
+        blankBoxes(box3)
+        blankBoxes(box4)
+        blankBoxes(box5)
+        blankBoxes(box6)
+        blankBoxes(box7)
+        blankBoxes(box8)
+        blankBoxes(box9)
+        box1.style.backgroundColor = 'white'
+        box2.style.backgroundColor = 'white'
+        box3.style.backgroundColor = 'white'
+        box4.style.backgroundColor = 'white'
+        box5.style.backgroundColor = 'white'
+        box6.style.backgroundColor = 'white'
+        box7.style.backgroundColor = 'white'
+        box8.style.backgroundColor = 'white'
+        box9.style.backgroundColor = 'white'
+
+        document.querySelector('.announcement-message').textContent = "ready?! FIGHT!!!"
+
+        gameplayOn = true
+
+        player2score.dataset.scorePlayer2 = 0
+        player1score.dataset.scorePlayer1 = 0
+
+        var why = document.querySelector('.meme')
+        var first = why.firstChild
+        why.removeChild(first)
+
+    })
+
+
+
+    // Reset
+
+
+    // function boardReset() {
+        
+    //     box1.style.backgroundColor = 'white'
+    //     box2.style.backgroundColor = 'white'
+    //     box3.style.backgroundColor = 'white'
+    //     box4.style.backgroundColor = 'white'
+    //     box5.style.backgroundColor = 'white'
+    //     box6.style.backgroundColor = 'white'
+    //     box7.style.backgroundColor = 'white'
+    //     box8.style.backgroundColor = 'white'
+    //     box9.style.backgroundColor = 'white'
+
+    //     var childBox = document.querySelectorAll('.boxes')
+
+    //     for (var i=0; i<childBox.length; i++){
+    //         childBox[i].parentNode.removeChild(childBox[i])
+    //     }
+    // }
+
+    function isNotEmpty(box) {
+        return (box.classList.contains("dstar") || box.classList.contains("xwing"))
+    }
+
+    // function isEmpty(box) {
+    //     return (box5.classList.contains("xwing") ||)
+    // }
+    
+    //DRAW
+    function isDraw () {
+        if (isNotEmpty(box1) && isNotEmpty(box2) && isNotEmpty(box3) && isNotEmpty(box4) && isNotEmpty(box5) && isNotEmpty(box6) && isNotEmpty(box7) && isNotEmpty(box8) && isNotEmpty(box9)) {
+            gameplayOn = false
+            document.querySelector('.announcement-message').textContent = "DRAW!!! \n Click 'NEXT GAME' to continue..."
+
+            var imageWin = document.createElement('IMG')
+            imageWin.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzFpsYkz5DvmqPyc7nf5pkkIpqHgdL_MvqPA&usqp=CAU")
+            imageWin.setAttribute("height", "150px")
+
+
+            var abc = document.querySelector('.meme')
+            abc.appendChild(imageWin)
+        }
+    } 
+
+    function blankBoxes(box) {
+        var boxId = box.attributes.id.value
+        document.getElementById(boxId).classList.remove("xwing")
+        document.getElementById(boxId).classList.remove("dstar")
+    }
+
+    function addXwing(box) {
+        var xwingId = box.attributes.id.value
+        document.getElementById(xwingId).classList.add("xwing")
+    }
+
+    function addDstar(box) {
+        var dstarId = box.attributes.id.value
+        document.getElementById(dstarId).classList.add("dstar")
+    }
+    </script>
+</body>
+</html>
