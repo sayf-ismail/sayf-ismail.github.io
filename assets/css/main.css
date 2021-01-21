@@ -2322,7 +2322,7 @@ input, select, textarea {
 			}
 
 			.container {
-				padding: 0 2em 0 2em;
+				padding: 0 2em 0 0;
 			}
 
 		/* Icons */
@@ -2401,7 +2401,7 @@ input, select, textarea {
 			}
 
 			.container {
-				padding: 0 2em 0 2em;
+				padding: 0 2em 0 0;
 			}
 
 		/* Item */
@@ -2594,7 +2594,7 @@ input, select, textarea {
 			}
 
 			.container {
-				padding: 0 15px 0 15px;
+				padding: 0 15px 0 0;
 			}
 
 		/* List */
