@@ -3,6 +3,7 @@ function createContext() {
   const context = canvas.getContext("2d");
   return [canvas, context];
 }
+
 function resizeCanvas(canvas) {
   const { innerWidth, innerHeight } = window;
   canvas.width = innerWidth;
